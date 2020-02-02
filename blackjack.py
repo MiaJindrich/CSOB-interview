@@ -59,9 +59,11 @@ def get_total():
 
 @app.route('/blackjack/api/start', methods=['POST'])
 def start():
+    if len(game.hand) > 0:
+        abort(400, 'Can be called only at the start of the game')
     for add in range(2):
         game.add_card()
-    return jsonify({'in_hand': game.hand, 'cards_value': game.count_total()})
+    return jsonify({'in_hand': game.hand, 'cards_value': game.count_total()}), 201
 
 @app.route('/blackjack/api/hand/one', methods=['PUT'])
 def get_one():
