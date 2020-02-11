@@ -53,3 +53,13 @@ Response 200 OK:
     {"cards_value": 17}
     
 Gets total value of cards in client's hand. Scoring is based on Blackjack rules.
+
+## Blending arrays
+
+POST Request /api/blend_arrays:
+
+    curl --location --request POST 'http://127.0.0.1:5000/api/blend_arrays' \--header 'Content-Type: application/json' \--data-raw '{"arrays": [[1, 2, 3], [4, 5, 6, "a"], [7, 8, 9, "b", 33]]}'
+Response 200 OK:
+ `{"blended_arrays": [1, 4, 7, 2, 5, 8, 3, 6, 9, null, "a", "b", null, null, 33]}`
+
+Accepts an arbitrary number of arrays and blends them into one resulting array.
