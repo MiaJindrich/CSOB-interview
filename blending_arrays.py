@@ -27,7 +27,7 @@ def blend_arrays():
     if not isinstance(request.json['arrays'], list):
         abort(400)
     list_arrays = request.json['arrays']
-    return jsonify(blend(*list_arrays))
+    return jsonify({'blended_arrays': blend(*list_arrays)})
     
 @app.errorhandler(400)
 def bad_request(error):
